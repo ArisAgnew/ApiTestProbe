@@ -17,7 +17,10 @@ namespace TBApiTest.Interaction
     public static class Helper
     {
         /// <summary>
-        /// 
+        /// Расширяемый кастомный метод.
+        /// Обрезает начальные и конечные вхождения набора знаков, заданого в виде массива;
+        /// Производит замену разрыва строк "\r\n" и пробелов " ":
+        /// Environment.NewLine Property - cтрока, содержащая "\r\n" для платформ, отличных от Unix, или строка, содержащая "\n" для Unix платформ; 
         /// </summary>
         /// <param name="o"></param>
         /// <param name="replace1"></param>
@@ -26,7 +29,6 @@ namespace TBApiTest.Interaction
         /// <returns></returns>
         public static string TrimAndDoubleReplace(this string o, string replace1, string replace2, params char[] trimChars)
             => o.Trim(trimChars).Replace(Environment.NewLine, replace1).Replace(" ", replace2);
-
 
         internal static void Serialize<T>(this T arg, string fileName)
         {

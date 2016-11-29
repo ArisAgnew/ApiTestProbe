@@ -50,7 +50,7 @@ namespace TBApiTest.Tests.GetTests
                     Assert.AreEqual(usd, cuttedFromCur);
                     Console.WriteLine("USD TRUE");
                 }
-                else if (cuttedFromCur.Contains(eur) & cuttedFromCur.ToString().Length > 0)
+                else if (cuttedFromCur.Contains(eur) && cuttedFromCur.ToString().Length > 0)
                 {
                     Assert.AreEqual(eur, cuttedFromCur);
                     Console.WriteLine("EUR TRUE");
@@ -79,7 +79,7 @@ namespace TBApiTest.Tests.GetTests
                     Assert.AreEqual(usd, cuttedToCur);
                     Console.WriteLine("USD TRUE");
                 }
-                else if (cuttedToCur.Contains(eur) & cuttedToCur.ToString().Length > 0)
+                else if (cuttedToCur.Contains(eur) && cuttedToCur.ToString().Length > 0)
                 {
                     Assert.AreEqual(eur, cuttedToCur);
                     Console.WriteLine("EUR TRUE");
