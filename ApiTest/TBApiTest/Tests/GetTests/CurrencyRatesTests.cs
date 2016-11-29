@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 using TBApiTest.Models;
 using TBApiTest.Base;
+using TBApiTest.Interaction;
 
 namespace TBApiTest.Tests.GetTests
 {
@@ -30,74 +31,66 @@ namespace TBApiTest.Tests.GetTests
             IEnumerable<JToken> jsonArrayFromCur    = jsonObj.SelectTokens(jsonFromCurPath, true);
             IEnumerable<JToken> jsonArrayToCur      = jsonObj.SelectTokens(jsonToCurPath, true);
 
-            var rubcode = datapattern.GetCurrencyStuff()["rubcode"];
-            var rubname = datapattern.GetCurrencyStuff()["rubname"];
-            var usdcode = datapattern.GetCurrencyStuff()["usdcode"];
-            var usdname = datapattern.GetCurrencyStuff()["usdname"];
-            var eurcode = datapattern.GetCurrencyStuff()["eurcode"];
-            var eurname = datapattern.GetCurrencyStuff()["eurname"];
-            var gbpcode = datapattern.GetCurrencyStuff()["gbpcode"];
-            var gbpname = datapattern.GetCurrencyStuff()["gbpname"];
-            
+            var rub = datapattern.GetCurrencyStuff()["rub"];
+            var usd = datapattern.GetCurrencyStuff()["usd"];
+            var eur = datapattern.GetCurrencyStuff()["eur"];
+            var gbp = datapattern.GetCurrencyStuff()["gbp"];
+
             foreach (JToken fromCur in jsonArrayFromCur)
             {
-                string cutFromCur = fromCur.ToString().
-                    Trim(new char[] { '{', '}' }).Replace(" ", string.Empty);
-                Debug.WriteLine(cutFromCur);
-                if (cutFromCur.Contains(rubcode))
+                string cuttedFromCur = fromCur.ToString().TrimAndDoubleReplace(string.Empty, string.Empty, new char[] { '{', '}' });
+                Debug.WriteLine(cuttedFromCur);
+                if (cuttedFromCur.Contains(rub) && cuttedFromCur.ToString().Length > 0)
                 {
-                    Assert.That(cutFromCur.Contains(rubcode));
-                    Debug.WriteLine("RUB TRUE");
+                    Assert.AreEqual(rub, cuttedFromCur);
+                    Console.WriteLine("RUB TRUE");
                 }
-                else if (cutFromCur.Contains(usdcode))
+                else if (cuttedFromCur.Contains(usd) && cuttedFromCur.ToString().Length > 0)
                 {
-                    Assert.That(cutFromCur.Contains(usdcode));
-                    Debug.WriteLine("USD TRUE");
+                    Assert.AreEqual(usd, cuttedFromCur);
+                    Console.WriteLine("USD TRUE");
                 }
-                else if (cutFromCur.Contains(eurcode))
+                else if (cuttedFromCur.Contains(eur) & cuttedFromCur.ToString().Length > 0)
                 {
-                    Assert.That(cutFromCur.Contains(eurcode));
-                    Debug.WriteLine("EUR TRUE");
+                    Assert.AreEqual(eur, cuttedFromCur);
+                    Console.WriteLine("EUR TRUE");
                 }
-                else if (cutFromCur.Contains(gbpcode))
+                else if (cuttedFromCur.Contains(gbp) && cuttedFromCur.ToString().Length > 0)
                 {
-                    Assert.That(cutFromCur.Contains(gbpcode));
-                    Debug.WriteLine("GBP TRUE");
+                    Assert.AreEqual(gbp, cuttedFromCur);
+                    Console.WriteLine("GBP TRUE");
                 }
                 else
-                    throw new Exception(
-                        $"Matching CurrencyCode did not happen.");
+                    throw new Exception($"Matching CurrencyCode did not happen.");
             }
 
 
             foreach (JToken toCur in jsonArrayToCur)
             {
-                var cutToCur = toCur.ToString().
-                    Trim(new char[] { '{', '}' }).Replace(" ", string.Empty);
-                Debug.WriteLine(cutToCur);
-                if (cutToCur.Contains(rubname))
+                var cuttedToCur = toCur.ToString().TrimAndDoubleReplace(string.Empty, string.Empty, new char[] { '{', '}' });
+                Debug.WriteLine(cuttedToCur);
+                if (cuttedToCur.Contains(rub) && cuttedToCur.ToString().Length > 0)
                 {
-                    Assert.That(cutToCur.Contains(rubname));
-                    Debug.WriteLine("RUB TRUE");
+                    Assert.AreEqual(rub, cuttedToCur);
+                    Console.WriteLine("RUB TRUE");
                 }
-                else if (cutToCur.Contains(usdname))
+                else if (cuttedToCur.Contains(usd) && cuttedToCur.ToString().Length > 0)
                 {
-                    Assert.That(cutToCur.Contains(usdname));
-                    Debug.WriteLine("USD TRUE");
+                    Assert.AreEqual(usd, cuttedToCur);
+                    Console.WriteLine("USD TRUE");
                 }
-                else if (cutToCur.Contains(eurname))
+                else if (cuttedToCur.Contains(eur) & cuttedToCur.ToString().Length > 0)
                 {
-                    Assert.That(cutToCur.Contains(eurname));
-                    Debug.WriteLine("EUR TRUE");
+                    Assert.AreEqual(eur, cuttedToCur);
+                    Console.WriteLine("EUR TRUE");
                 }
-                else if (cutToCur.Contains(gbpname))
+                else if (cuttedToCur.Contains(gbp) && cuttedToCur.ToString().Length > 0)
                 {
-                    Assert.That(cutToCur.Contains(gbpname));
-                    Debug.WriteLine("GBP TRUE");
+                    Assert.AreEqual(gbp, cuttedToCur);
+                    Console.WriteLine("GBP TRUE");
                 }
                 else
-                    throw new Exception(
-                        $"Matching CurrencyName did not happen.");
+                    throw new Exception($"Matching CurrencyName did not happen.");
             }
         }
     }

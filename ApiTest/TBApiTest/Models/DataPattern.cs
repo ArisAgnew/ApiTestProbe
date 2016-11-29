@@ -14,14 +14,10 @@ namespace TBApiTest.Models
         public Dictionary<dynamic, dynamic> GetCurrencyStuff() =>
             new Dictionary<dynamic, dynamic>
             {
-                {"rubcode", "\"code\":643,"},
-                {"rubname", "\"name\":\"RUB\""},
-                {"usdcode", "\"code\":840,"},
-                {"usdname", "\"name\":\"USD\""},
-                {"eurcode", "\"code\":978,"},
-                {"eurname", "\"name\":\"EUR\""},
-                {"gbpcode", "\"code\":826,"},
-                {"gbpname", "\"name\":\"GBP\""},
+                {"rub", "\"code\":643,\"name\":\"RUB\""},
+                {"usd", "\"code\":840,\"name\":\"USD\""},
+                {"eur", "\"code\":978,\"name\":\"EUR\""},
+                {"gbp", "\"code\":826,\"name\":\"GBP\""},
             };
     }
 
